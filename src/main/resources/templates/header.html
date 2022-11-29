@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+</head>
+<body>
+<div th:fragment="header">
+    <div>
+        <div>
+            <a>Parts List Management</a>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <a th:href="@{/component-overview}">Overview</a>
+                </li>
+                <li>
+                    <a th:href="@{/create-material}">Create Material</a>
+                </li>
+                <li>
+                    <a th:href="@{/create-product}">Create Product</a>
+                </li>
+                <li>
+                    <a th:href="@{/material-list}">Material List</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
