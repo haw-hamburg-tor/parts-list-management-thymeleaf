@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Material</title>
+</head>
+<body>
+<header th:insert="~{header :: header}"></header>
+<h2>Create Material</h2>
+<form method="POST" th:action="@{/create-material}" th:object="${materialForm}">
+    <label for="materialNameInput">Name:</label>
+    <input id="materialNameInput" required type="text" placeholder="Enter Name" th:field="*{name}">
+    <label for="materialPriceInput">Price:</label>
+    <input id="materialPriceInput" required type="text" placeholder="Enter Price" th:field="*{price}">
+    <button type="submit">Create Material</button>
+</form>
+</body>
+</html>

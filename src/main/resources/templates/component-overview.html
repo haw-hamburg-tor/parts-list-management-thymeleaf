@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Component Overview</title>
+</head>
+<body>
+<header th:insert="~{header :: header}"></header>
+<h2>Component Overview</h2>
+<table>
+    <thead>
+    <tr>
+        <th style="width: 30%">Name</th>
+        <th style="width: 20%">Price</th>
+        <th style="width: 20%">Total Price</th>
+        <th style="width: 30%">Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="component : ${components}">
+        <td th:text="${component.getName()}"></td>
+        <td th:text="${component.getPrice()}"></td>
+        <td th:text="${component.fetchTotalPrice()}"></td>
+        <td th:text="${component.getType()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

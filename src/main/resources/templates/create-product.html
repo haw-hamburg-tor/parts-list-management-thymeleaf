@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Product</title>
+</head>
+<body>
+
+<header th:insert="~{header :: header}"></header>
+
+<h2>Create Product</h2>
+<label for="productNameInput">Name:</label>
+<input id="productNameInput" placeholder="Enter Name" required type="text">
+<label for="productPriceInput">Price:</label>
+<input id="productPriceInput" placeholder="Enter Price" required type="text">
+
+<h3>Add Component</h3>
+<label>Name:
+    <select id="componentNameInput">
+        <option th:each="componentName : ${componentNames}" th:text="${componentName}"
+                th:value="${componentName}"></option>
+    </select>
+</label>
+<label>Amount:
+    <select id="componentAmountInput">
+        <option th:each="i : ${#numbers.sequence(1, 50)}" th:text="${i}" th:value="${i}"></option>
+    </select>
+</label>
+<button id="addComponentButton" onclick="addComponentRow()">Add Component</button>
+
+<table id="componentTable">
+    <thead>
+    <tr>
+        <th style="width: 60%">Name</th>
+        <th style="width: 40%">Amount</th>
+    </tr>
+    </thead>
+    <tbody id="componentTableBody">
+    </tbody>
+</table>
+<button id="createProductButton" onclick="createProduct()">Create Product</button>
+</body>
+<script>
+    function addComponentRow() {
+        const nameSelection = document.getElementById('componentNameInput');
+        const name = nameSelection.options[nameSelection.selectedIndex].text;
+        const amountSelection = document.getElementById('componentAmountInput');
+        const amount = amountSelection.options[amountSelection.selectedIndex].text;
+
+        const componentTableBody = document.getElementById('componentTableBody');
+        const newRow = componentTableBody.insertRow();
+        const newCell0 = newRow.insertCell();
+        const newCell1 = newRow.insertCell();
+        newCell0.innerHTML = name;
+        newCell1.innerHTML = amount;
+
+        nameSelection.selectedIndex = 0;
+        amountSelection.selectedIndex = 0;
+    }
+
+    function createProduct() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/create-product');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(buildCreateProductJSON());
+        location.reload();
+    }
+
+    function buildCreateProductJSON() {
+        const name = document.getElementById('productNameInput').value;
+        const price = document.getElementById('productPriceInput').value;
+
+        const componentTable = document.getElementById('componentTable');
+        const columns = Array.from(componentTable.querySelectorAll('th')).map(cell => cell.textContent.toLowerCase());
+        const rows = componentTable.querySelectorAll('tbody > tr');
+        const tableAsObject = Array.from(rows).map(row => {
+            const cells = Array.from(row.querySelectorAll('td'));
+            return columns.reduce((obj, col, idx) => {
+                obj[col] = cells[idx].textContent;
+                return obj;
+            }, {});
+        });
+
+        return JSON.stringify({
+            name: name,
+            price: price,
+            quantifiedComponents: tableAsObject
+        });
+    }
+</script>
+</html>
