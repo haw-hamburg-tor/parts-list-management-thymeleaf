@@ -1,4 +1,4 @@
-# Parts List Management with Java Swing
+# Parts List Management with Thymeleaf
 This repository contains a web application to manage components.
 It may be used
 * to show an overview of all components.
@@ -9,4 +9,9 @@ Its entrypoint is [PartsListApplication.java](src/main/java/org/hawhamburg/parts
 
 ---
 
-The web application was built with [Thymeleaf](https://www.thymeleaf.org/) as the front-end templating engine and [Spring Boot](https://spring.io/projects/spring-boot) for everything else.
+The web application was built with [Thymeleaf](https://www.thymeleaf.org/) as the front-end templating engine
+and [Spring Boot](https://spring.io/projects/spring-boot) for everything else.
+
+This repository contains end-to-end tests, that were written using [Selenium](https://www.selenium.dev/documentation/),
+a framework for browser automation.
+The selenium tests may be found in the [endtoend test package](src/test/java/org/hawhamburg/partslist/endtoend).
