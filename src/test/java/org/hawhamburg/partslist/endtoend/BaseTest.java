@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
@@ -25,7 +26,10 @@ public class BaseTest {
     @BeforeEach
     public void beforeEach() {
         this.baseURL = "http://localhost:" + port;
-        this.webDriver = new ChromeDriver();
+        var options = new ChromeOptions();
+        // --headless is required to run selenium tests via GitHub actions
+        options.addArguments("--headless");
+        this.webDriver = new ChromeDriver(options);
     }
 
     @AfterEach
