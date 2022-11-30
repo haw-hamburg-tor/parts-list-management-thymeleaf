@@ -10,11 +10,11 @@
 <form method="POST" th:action="@{/material-list}" th:object="${getMaterialListForm}">
     <label>
         Product Name:
-        <select th:field="*{productName}">
+        <select id="productNameInput" th:field="*{productName}">
             <option th:each="productName : ${productNames}" th:text="${productName}" th:value="${productName}"></option>
         </select>
     </label>
-    <button type="submit">Get Material List</button>
+    <button id="getMaterialListButton" type="submit">Get Material List</button>
 </form>
 <table>
     <thead>
