@@ -1,5 +1,8 @@
-package org.hawhamburg.partslist.model;
+package org.hawhamburg.partslist.unit.model;
 
+import org.hawhamburg.partslist.model.CyclicStructureException;
+import org.hawhamburg.partslist.model.Material;
+import org.hawhamburg.partslist.model.Product;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;

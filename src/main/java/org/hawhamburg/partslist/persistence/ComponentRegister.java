@@ -5,10 +5,7 @@ import org.hawhamburg.partslist.model.CyclicStructureException;
 import org.hawhamburg.partslist.model.Material;
 import org.hawhamburg.partslist.model.Product;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class ComponentRegister {
@@ -18,8 +15,8 @@ public class ComponentRegister {
     private final Map<String, Product> products;
 
     private ComponentRegister() {
-        this.products = new HashMap<>();
-        this.materials = new HashMap<>();
+        this.products = new LinkedHashMap<>();
+        this.materials = new LinkedHashMap<>();
     }
 
     public static ComponentRegister getInstance() {
@@ -50,6 +47,10 @@ public class ComponentRegister {
 
     private void addMaterial(Material material) {
         materials.put(material.getName(), material);
+    }
+
+    public Material getMaterial(String name) {
+        return materials.get(name);
     }
 
     private void addProduct(Product product) {
