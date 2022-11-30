@@ -27,8 +27,7 @@ public class BaseTest {
     public void beforeEach() {
         this.baseURL = "http://localhost:" + port;
         var options = new ChromeOptions();
-//        options.addArguments("--no-sandbox");
-//        options.addArguments("--disable-dev-shm-usage");
+        // --headless is required to run selenium tests via GitHub actions
         options.addArguments("--headless");
         this.webDriver = new ChromeDriver(options);
     }
