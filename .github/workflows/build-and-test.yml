@@ -12,7 +12,7 @@ name: Gradle CI
 
 on: [push]
 env:
-  HOST: ${{ secrets.GITHUB_TOKEN }}
+  HOST: ${{ secrets.HOST }}
 jobs:
   build:
     runs-on: ubuntu-latest
