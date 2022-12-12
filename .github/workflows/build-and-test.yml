@@ -11,10 +11,9 @@
 name: Gradle CI
 
 on: [push]
-
-jobs:
 env:
   HOST: ${{ secrets.GITHUB_TOKEN }}
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
