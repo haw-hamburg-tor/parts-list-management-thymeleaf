@@ -16,11 +16,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: executing remote ssh commands using password
+      - name: wherearemysecrets
+        shell: bash
+        run: echo ${{ secrets.HOST }}
+
+      - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.KEY }}
           port: 22
           script: whoami
