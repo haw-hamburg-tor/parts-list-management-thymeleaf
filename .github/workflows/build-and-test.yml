@@ -32,6 +32,6 @@ jobs:
           port: 22
           script: |
             killall -9 java
-            java -jar parts-list-management-thymeleaf-0.0.1-SNAPSHOT.jar
+            java -jar deployment/parts-list-management-thymeleaf-0.0.1-SNAPSHOT.jar
             
 
