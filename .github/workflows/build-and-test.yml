@@ -13,6 +13,8 @@ name: Gradle CI
 on: [push]
 
 jobs:
+env:
+  HOST: ${{ secrets.GITHUB_TOKEN }}
   build:
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +22,7 @@ jobs:
         shell: bash
         run: |
           echo Hello World
-          echo ${{ secrets.HOST }}
+          echo $HOST
 
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.6
