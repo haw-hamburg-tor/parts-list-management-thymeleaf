@@ -22,7 +22,6 @@ jobs:
         run: |
           echo Hello World
           echo $HOST
-
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.6
         with:
