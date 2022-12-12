@@ -18,7 +18,9 @@ jobs:
     steps:
       - name: wherearemysecrets
         shell: bash
-        run: echo ${{ secrets.HOST }}
+        run: |
+          echo Hello World
+          echo ${{ secrets.HOST }}
 
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.6
