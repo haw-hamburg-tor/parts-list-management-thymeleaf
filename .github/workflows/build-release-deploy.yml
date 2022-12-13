@@ -1,12 +1,12 @@
-name: Build, Release and Deployment
+name: Build, Release and Deploy
 
 on: [push]
-env:
-  JAR_FILE_PATH: build/libs/parts-list-management-thymeleaf-1.0.0.jar"
 
 jobs:
   build-release-deploy:
     runs-on: ubuntu-latest
+    env:
+      JAR_FILE_PATH: 'build/libs/parts-list-management-thymeleaf-1.0.0.jar'
     steps:
       - uses: actions/checkout@v3
 
@@ -56,8 +56,8 @@ jobs:
         with:
           # This pulls from the create_release step above, to get its outputs object, which includes an `upload_url`.
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: $JAR_FILE_PATH
-          asset_name: $(basename ${JAR_FILE_PATH})
+          asset_path: ${{ env.JAR_FILE_PATH }}
+          asset_name: $(basename ${{ env.JAR_FILE_PATH }})
           asset_content_type: application/java-archive
 
       - name: Execute remote ssh commands using ssh key
