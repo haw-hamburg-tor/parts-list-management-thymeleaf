@@ -47,6 +47,8 @@ jobs:
         run: |
           echo Hello World
           echo $JAR_FILE_PATH
+          echo $(basename ${{ env.JAR_FILE_PATH }})
+          echo basename ${{ env.JAR_FILE_PATH }}
 
       - name: Upload Release Asset
         id: upload-release-asset
@@ -76,7 +78,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          source: "build/libs/parts-list-management-thymeleaf-1.0.0.jar"
+          source: ${{ env.JAR_FILE_PATH }}
           target: "deployment"
           strip_components: 2
 
