@@ -4,17 +4,16 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build-release-deploy:
     runs-on: ubuntu-latest
+
     env:
       BUILD_PATH: 'build/libs/'
       DEPLOYMENT_PATH: 'deployment/'
       JAR_FILE_NAME: 'parts-list-management-thymeleaf-1.0.0.jar'
+
     steps:
       - uses: actions/checkout@v3
 
