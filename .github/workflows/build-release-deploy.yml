@@ -26,7 +26,7 @@ jobs:
       - name: Build and Test with Gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: build
+          arguments: build --no-daemon
 
       - name: Get commit hash for release
         id: commit
@@ -51,7 +51,7 @@ jobs:
         run: |
           echo Hello World
           echo $JAR_FILE_PATH
-          echo "${BUILD_PATH}${JAR_FILE_NAME]"
+          echo "${BUILD_PATH}${JAR_FILE_NAME}"
 
       - name: Upload Release Asset
         id: upload-release-asset
