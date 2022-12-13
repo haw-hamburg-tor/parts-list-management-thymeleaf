@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       JAR_FILE_PATH: 'build/libs/parts-list-management-thymeleaf-1.0.0.jar'
+      JAR_FILE_NAME: $(basename ${{ env.JAR_FILE_PATH }})
     steps:
       - uses: actions/checkout@v3
 
@@ -15,6 +16,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+          cache: 'gradle'
 
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
@@ -48,7 +50,7 @@ jobs:
           echo Hello World
           echo $JAR_FILE_PATH
           echo $(basename ${{ env.JAR_FILE_PATH }})
-          echo basename ${{ env.JAR_FILE_PATH }}
+          echo ${{ env.JAR_FILE_NAME }}
 
       - name: Upload Release Asset
         id: upload-release-asset
