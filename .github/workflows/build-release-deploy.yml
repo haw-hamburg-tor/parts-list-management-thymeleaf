@@ -52,8 +52,6 @@ jobs:
           echo Hello World
           echo $JAR_FILE_PATH
           echo "${BUILD_PATH}${JAR_FILE_NAME]"
-          echo $(basename ${{ env.JAR_FILE_PATH }})
-          echo ${{ env.JAR_FILE_NAME }}
 
       - name: Upload Release Asset
         id: upload-release-asset
