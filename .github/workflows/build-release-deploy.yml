@@ -9,7 +9,6 @@ jobs:
       BUILD_PATH: 'build/libs/'
       DEPLOYMENT_PATH: 'deployment/'
       JAR_FILE_NAME: 'parts-list-management-thymeleaf-1.0.0.jar'
-      JAR_FILE_PATH: 'build/libs/parts-list-management-thymeleaf-1.0.0.jar'
     steps:
       - uses: actions/checkout@v3
 
@@ -50,7 +49,6 @@ jobs:
         shell: bash
         run: |
           echo Hello World
-          echo $JAR_FILE_PATH
           echo "${BUILD_PATH}${JAR_FILE_NAME}"
 
       - name: Upload Release Asset
@@ -62,7 +60,7 @@ jobs:
           # This pulls from the create_release step above, to get its outputs object, which includes an `upload_url`.
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ env.BUILD_PATH }}${{ env.JAR_FILE_NAME }}
-          asset_name: $(basename ${{ env.JAR_FILE_PATH }})
+          asset_name: ${{ env.BUILD_PATH }}${{ env.JAR_FILE_NAME }}
           asset_content_type: application/java-archive
 
       - name: Execute remote ssh commands using ssh key
@@ -81,8 +79,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          source: ${{ env.JAR_FILE_PATH }}
-          target: "deployment"
+          source: ${{ env.BUILD_PATH }}${{ env.JAR_FILE_NAME }}
+          target: ${{ env.DEPLOYMENT_PATH }}
           strip_components: 2
 
       - name: Execute remote ssh commands using ssh key
@@ -93,4 +91,4 @@ jobs:
           key: ${{ secrets.KEY }}
           # The redirection of output into a file is necessary. Otherwise, the script would not exit.
           script: |
-            java -jar deployment/parts-list-management-thymeleaf-1.0.0.jar > deployment/logs.log &
+            java -jar ${{ env.DEPLOYMENT_PATH }}${{ env.JAR_FILE_NAME }} > ${{ env.DEPLOYMENT_PATH }}logs.log &
