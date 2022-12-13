@@ -4,6 +4,8 @@ on: [push]
 env:
   HOST: ${{ secrets.HOST }}
 jobs:
+  env:
+    JAR_FILE_PATH: build/libs/parts-list-management-thymeleaf-1.0.0.jar"
   build-release-deploy:
     runs-on: ubuntu-latest
     steps:
@@ -49,8 +51,8 @@ jobs:
         with:
           # This pulls from the create_release step above, to get its outputs object, which includes an `upload_url`.
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/libs/parts-list-management-thymeleaf-0.0.1-SNAPSHOT.jar
-          asset_name: parts-list-management-thymeleaf-0.0.1-SNAPSHOT.jar
+          asset_path: $JAR_FILE_PATH
+          asset_name: $(basename ${JAR_FILE_PATH})
           asset_content_type: application/java-archive
 
       - name: Execute remote ssh commands using ssh key
@@ -81,4 +83,4 @@ jobs:
           key: ${{ secrets.KEY }}
           # The redirection of output into a file is necessary. Otherwise, the script would not exit.
           script: |
-            java -jar deployment/parts-list-management-thymeleaf-0.0.1-SNAPSHOT.jar > deployment/logs.log &
+            java -jar deployment/parts-list-management-thymeleaf-1.0.0.jar > deployment/logs.log &
