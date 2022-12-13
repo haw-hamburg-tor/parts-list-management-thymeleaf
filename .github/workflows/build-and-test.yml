@@ -8,9 +8,15 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Gradle CI
+name: Build, Release and Deployment
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+    pull_request:
+      branches:
+        - main
 env:
   HOST: ${{ secrets.HOST }}
 jobs:
@@ -57,18 +63,13 @@ jobs:
           asset_name: parts-list-management-thymeleaf-0.0.1-SNAPSHOT.jar
           asset_content_type: application/java-archive
 
-      - name: wherearemysecrets
-        shell: bash
-        run: |
-          echo Hello World
-          echo $HOST
-
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          # The ||-part is necessary as killall would not exit with code 0 if no java processes were running.
           script: |
             killall -9 java || echo "No Java Process was running."
 
@@ -88,5 +89,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          # The redirection of output into a file is necessary. Otherwise, the script would not exit.
           script: |
             java -jar deployment/parts-list-management-thymeleaf-0.0.1-SNAPSHOT.jar > deployment/logs.log &
