@@ -47,8 +47,7 @@ jobs:
           release_name: Release ${{ steps.commit.outputs.short }}
           body: |
             Changes in this Release
-            - First Change
-            - Second Change
+            - Just updated the name/path for the main release artifact 
 
       - name: Upload Release Asset
         id: upload-release-asset
@@ -59,7 +58,7 @@ jobs:
           # This pulls from the create_release step above, to get its outputs object, which includes an `upload_url`.
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ env.BUILD_PATH }}${{ env.JAR_FILE_NAME }}
-          asset_name: ${{ env.BUILD_PATH }}${{ env.JAR_FILE_NAME }}
+          asset_name: ${{ env.JAR_FILE_NAME }}
           asset_content_type: application/java-archive
 
       - name: Execute remote ssh commands using ssh key
