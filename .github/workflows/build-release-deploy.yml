@@ -6,8 +6,10 @@ jobs:
   build-release-deploy:
     runs-on: ubuntu-latest
     env:
+      BUILD_PATH: 'build/libs/'
+      DEPLOYMENT_PATH: 'deployment/'
+      JAR_FILE_NAME: 'parts-list-management-thymeleaf-1.0.0.jar'
       JAR_FILE_PATH: 'build/libs/parts-list-management-thymeleaf-1.0.0.jar'
-      JAR_FILE_NAME: $(basename ${{ env.JAR_FILE_PATH }})
     steps:
       - uses: actions/checkout@v3
 
@@ -49,6 +51,7 @@ jobs:
         run: |
           echo Hello World
           echo $JAR_FILE_PATH
+          echo "${BUILD_PATH}${JAR_FILE_NAME]"
           echo $(basename ${{ env.JAR_FILE_PATH }})
           echo ${{ env.JAR_FILE_NAME }}
 
@@ -60,7 +63,7 @@ jobs:
         with:
           # This pulls from the create_release step above, to get its outputs object, which includes an `upload_url`.
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.JAR_FILE_PATH }}
+          asset_path: ${{ env.BUILD_PATH }}${{ env.JAR_FILE_NAME }}
           asset_name: $(basename ${{ env.JAR_FILE_PATH }})
           asset_content_type: application/java-archive
 
