@@ -2,10 +2,9 @@ name: Build, Release and Deployment
 
 on: [push]
 env:
-  HOST: ${{ secrets.HOST }}
+  JAR_FILE_PATH: build/libs/parts-list-management-thymeleaf-1.0.0.jar"
+
 jobs:
-  env:
-    JAR_FILE_PATH: build/libs/parts-list-management-thymeleaf-1.0.0.jar"
   build-release-deploy:
     runs-on: ubuntu-latest
     steps:
