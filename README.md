@@ -1,4 +1,6 @@
 # Parts List Management with Thymeleaf
+![Build](https://github.com/haw-hamburg-tor/parts-list-management-thymeleaf/actions/workflows/ci.yml/badge.svg)
+
 This repository contains a web application to manage components.
 It may be used
 * to show an overview of all components.
