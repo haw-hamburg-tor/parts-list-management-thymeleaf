@@ -28,22 +28,19 @@ jobs:
         with:
           arguments: build
 
-      - name: Copy file via ssh key
-        uses: appleboy/scp-action@v0.1.3
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          source: ${{ env.BUILD_PATH }}${{ env.JAR_FILE_NAME }}
-          target: ${{ env.DEPLOYMENT_PATH }}
-          strip_components: 2
+      - name: Get commit hash for release
+        id: commit
+        uses: pr-mpt/actions-commit-hash@v2
 
-      - name: Execute remote ssh commands using ssh key
-        uses: appleboy/ssh-action@v0.1.6
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.1.4
+        env:
+          # This token is provided by GitHub Actions, you do not need to create your own token.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          # The redirection of output into a file is necessary. Otherwise, the script would not exit.
-          script: |
-            java -jar ${{ env.DEPLOYMENT_PATH }}${{ env.JAR_FILE_NAME }} > ${{ env.DEPLOYMENT_PATH }}logs.log &
+          tag_name: ${{ steps.commit.outputs.short }}
+          release_name: Release ${{ steps.commit.outputs.short }}
+          body: |
+            Changes in this Release
+            - first release of the demo branch 
