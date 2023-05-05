@@ -29,6 +29,7 @@ public class BaseTest {
         var options = new ChromeOptions();
         // --headless is required to run selenium tests via GitHub actions
         options.addArguments("--headless");
+        options.addArguments("--remote-allow-origins=*");
         this.webDriver = new ChromeDriver(options);
     }
 
