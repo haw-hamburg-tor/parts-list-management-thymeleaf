@@ -1,11 +1,4 @@
 # Parts List Management with Thymeleaf
-![Build](https://github.com/haw-hamburg-tor/parts-list-management-thymeleaf/actions/workflows/ci.yml/badge.svg)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=haw-hamburg-tor_parts-list-management-thymeleaf&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=haw-hamburg-tor_parts-list-management-thymeleaf)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=haw-hamburg-tor_parts-list-management-thymeleaf&metric=coverage)](https://sonarcloud.io/summary/new_code?id=haw-hamburg-tor_parts-list-management-thymeleaf)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=haw-hamburg-tor_parts-list-management-thymeleaf&metric=bugs)](https://sonarcloud.io/summary/new_code?id=haw-hamburg-tor_parts-list-management-thymeleaf)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=haw-hamburg-tor_parts-list-management-thymeleaf&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=haw-hamburg-tor_parts-list-management-thymeleaf)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=haw-hamburg-tor_parts-list-management-thymeleaf&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=haw-hamburg-tor_parts-list-management-thymeleaf)
-
 This repository contains a web application to manage components.
 It may be used
 * to show an overview of all components.
@@ -23,5 +16,7 @@ This repository contains end-to-end tests, that were written using [Selenium](ht
 a framework for browser automation.
 The selenium tests may be found in the [endtoend test package](src/test/java/org/hawhamburg/partslist/endtoend).
 
-A pipeline to automatically build, test and scan the application with sonar cloud can be found in [ci.yml](.github/workflows/ci.yml).  
-A pipeline to automatically build, release and deploy the application via ssh/scp to a remote server can be found in [cd.yml](.github/workflows/cd.yml).
+---
+
+## Task
+Create a pipeline to automatically to build the project and execute all tests.
