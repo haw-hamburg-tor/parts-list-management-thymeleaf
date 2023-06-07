@@ -22,3 +22,12 @@ jobs:
 
       - name: Test with Gradle
         run: ./gradlew test
+
+      - name: JaCoCo Report
+        run: ./gradlew jacocoTestReport
+
+      - name: Upload code coverage results
+        uses: actions/upload-artifact@v3 # https://github.com/marketplace/actions/upload-a-build-artifact
+        with:
+          name: code-coverage-report
+          path: build/reports/jacoco/test/html/
