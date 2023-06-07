@@ -22,4 +22,5 @@ The selenium tests may be found in the [endtoend test package](src/test/java/org
 
 ## Task
 - [x] Create a pipeline to automatically build the project and execute all tests.
-- [ ] Add computation of test coverage with JaCoCo.
+- [x] Add computation of test coverage with JaCoCo.
+- [ ] Perform static code analysis with sonarqube.
