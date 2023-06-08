@@ -29,6 +29,10 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      - name: Get commit hash for release
+        id: commit
+        uses: pr-mpt/actions-commit-hash@v2 # https://github.com/marketplace/actions/commit-hash
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1.1.4 # https://github.com/actions/create-release
