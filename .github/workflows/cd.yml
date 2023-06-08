@@ -1,10 +1,9 @@
 name: build-and-deploy
 
 on:
-  workflow_run:
-    workflows: ['build-test-scan']
-    types:
-      - completed
+  push:
+    branches:
+      - deployment
 
 jobs:
   build-release-deploy:
@@ -56,4 +55,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            sudo java -jar ${{ env.DEPLOYMENT_PATH }}${{ env.JAR_FILE_NAME }} > ${{ env.DEPLOYMENT_PATH }}logs.log & 
+            sudo nohup java -jar ${{ env.DEPLOYMENT_PATH }}${{ env.JAR_FILE_NAME }} > ${{ env.DEPLOYMENT_PATH }}logs.log 2>&1 &
