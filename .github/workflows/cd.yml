@@ -12,7 +12,8 @@ on:
 jobs:
   build-release-deploy:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success'
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/deployment' }}
+
 
     env:
       BUILD_PATH: 'build/libs/'
