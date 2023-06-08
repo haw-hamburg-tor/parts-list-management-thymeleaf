@@ -2,8 +2,6 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.0.1'
 	id 'io.spring.dependency-management' version '1.1.0'
-	id 'jacoco'
-	id "org.sonarqube" version "4.2.0.3129"
 }
 
 group = 'haw.hamburg'
@@ -28,22 +26,4 @@ dependencies {
 
 test {
 	useJUnitPlatform()
-	finalizedBy jacocoTestReport
-}
-
-jacocoTestReport {
-	dependsOn test
-	reports {
-		xml.enabled true
-		html.enabled true
-	}
-}
-
-sonarqube {
-	properties {
-		property "sonar.projectKey", "haw-hamburg-tor_parts-list-management-thymeleaf"
-		property "sonar.organization", "haw-hamburg-tor"
-		property "sonar.host.url", "https://sonarcloud.io"
-		property "sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml"
-	}
 }

@@ -23,7 +23,7 @@ This repository contains end-to-end tests, that were written using [Selenium](ht
 a framework for browser automation.
 The selenium tests may be found in the [endtoend test package](src/test/java/org/hawhamburg/partslist/endtoend).
 
-A pipeline to automatically build, test and scan the application with sonarqube can be found in [ci.yml](.github/workflows/ci.yml).
+A pipeline to automatically build, test and scan the application with sonarqube can be found in [ci.yml](.github/workflows/cd.yml).
 
 ---
 
